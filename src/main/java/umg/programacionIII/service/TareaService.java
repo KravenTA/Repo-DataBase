@@ -3,8 +3,9 @@ package umg.programacionIII.service;
 import org.springframework.stereotype.Service;
 import umg.programacionIII.model.Tarea;
 import umg.programacionIII.repository.TareaRepository;
+import umg.programacionIII.estructuras.lista.Lista;
+import umg.programacionIII.estructuras.lista.Nodo;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -15,20 +16,26 @@ public class TareaService {
         this.tareaRepository = tareaRepository;
     }
 
-    public List<Tarea> findAll() {
-        return tareaRepository.findAll();
+    public Lista<Tarea> findAll() {
+        Lista<Tarea> resultado = new Lista<>();
+        tareaRepository.findAll().forEach(tarea -> resultado.insertarCabezaLista(tarea));
+        return resultado;
     }
 
     public Optional<Tarea> findById(Long id) {
         return tareaRepository.findById(id);
     }
 
-    public List<Tarea> findByUsuarioId(Long usuarioId) {
-        return tareaRepository.findByUsuarioId(usuarioId);
+    public Lista<Tarea> findByUsuarioId(Long usuarioId) {
+        Lista<Tarea> resultado = new Lista<>();
+        tareaRepository.findByUsuarioId(usuarioId).forEach(tarea -> resultado.insertarCabezaLista(tarea));
+        return resultado;
     }
 
-    public List<Tarea> findByFinalizada(boolean finalizada) {
-        return tareaRepository.findByFinalizada(finalizada);
+    public Lista<Tarea> findByFinalizada(boolean finalizada) {
+        Lista<Tarea> resultado = new Lista<>();
+        tareaRepository.findByFinalizada(finalizada).forEach(tarea -> resultado.insertarCabezaLista(tarea));
+        return resultado;
     }
 
     public Tarea save(Tarea tarea) {
