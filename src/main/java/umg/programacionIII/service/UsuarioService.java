@@ -4,8 +4,7 @@ import org.springframework.stereotype.Service;
 import umg.programacionIII.model.Usuario;
 import umg.programacionIII.repository.UsuarioRepository;
 import umg.programacionIII.estructuras.lista.Lista;
-
-import java.util.Optional;
+import umg.programacionIII.estructuras.lista.Opcional;
 
 @Service
 public class UsuarioService {
@@ -21,8 +20,13 @@ public class UsuarioService {
         return resultado;
     }
 
-    public Optional<Usuario> findById(Long id) {
-        return usuarioRepository.findById(id);
+    public Opcional<Usuario> findById(Long id) {
+        java.util.Optional<Usuario> resultado = usuarioRepository.findById(id);
+        if (resultado.isPresent()) {
+            return Opcional.de(resultado.get());
+        } else {
+            return Opcional.vacio();
+        }
     }
 
     public Usuario save(Usuario usuario) {

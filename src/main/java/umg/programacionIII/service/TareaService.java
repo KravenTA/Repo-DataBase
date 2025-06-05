@@ -4,9 +4,7 @@ import org.springframework.stereotype.Service;
 import umg.programacionIII.model.Tarea;
 import umg.programacionIII.repository.TareaRepository;
 import umg.programacionIII.estructuras.lista.Lista;
-import umg.programacionIII.estructuras.lista.Nodo;
-
-import java.util.Optional;
+import umg.programacionIII.estructuras.lista.Opcional;
 
 @Service
 public class TareaService {
@@ -22,20 +20,21 @@ public class TareaService {
         return resultado;
     }
 
-    public Optional<Tarea> findById(Long id) {
-        return tareaRepository.findById(id);
+    public Opcional<Tarea> findById(Long id) {
+        java.util.Optional<Tarea> resultado = tareaRepository.findById(id);
+        if (resultado.isPresent()) {
+            return Opcional.de(resultado.get());
+        } else {
+            return Opcional.vacio();
+        }
     }
 
     public Lista<Tarea> findByUsuarioId(Long usuarioId) {
-        Lista<Tarea> resultado = new Lista<>();
-        tareaRepository.findByUsuarioId(usuarioId).forEach(tarea -> resultado.insertarCabezaLista(tarea));
-        return resultado;
+        return tareaRepository.findByUsuarioId(usuarioId);
     }
 
     public Lista<Tarea> findByFinalizada(boolean finalizada) {
-        Lista<Tarea> resultado = new Lista<>();
-        tareaRepository.findByFinalizada(finalizada).forEach(tarea -> resultado.insertarCabezaLista(tarea));
-        return resultado;
+        return tareaRepository.findByFinalizada(finalizada);
     }
 
     public Tarea save(Tarea tarea) {

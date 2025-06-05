@@ -3,9 +3,8 @@ package umg.programacionIII.service;
 import org.springframework.stereotype.Service;
 import umg.programacionIII.model.Historial;
 import umg.programacionIII.repository.HistorialRepository;
-
-import java.util.List;
-import java.util.Optional;
+import umg.programacionIII.estructuras.lista.Lista;
+import umg.programacionIII.estructuras.lista.Opcional;
 
 @Service
 public class HistorialService {
@@ -15,15 +14,22 @@ public class HistorialService {
         this.historialRepository = historialRepository;
     }
 
-    public List<Historial> findAll() {
-        return historialRepository.findAll();
+    public Lista<Historial> findAll() {
+        Lista<Historial> resultado = new Lista<>();
+        historialRepository.findAll().forEach(historial -> resultado.insertarCabezaLista(historial));
+        return resultado;
     }
 
-    public Optional<Historial> findById(Long id) {
-        return historialRepository.findById(id);
+    public Opcional<Historial> findById(Long id) {
+        java.util.Optional<Historial> resultado = historialRepository.findById(id);
+        if (resultado.isPresent()) {
+            return Opcional.de(resultado.get());
+        } else {
+            return Opcional.vacio();
+        }
     }
 
-    public List<Historial> findByUsuarioId(Long usuarioId) {
+    public Lista<Historial> findByUsuarioId(Long usuarioId) {
         return historialRepository.findByUsuarioId(usuarioId);
     }
 
