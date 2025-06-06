@@ -2,6 +2,7 @@ package umg.programacionIII.model;
 
 import jakarta.persistence.*;
 import umg.programacionIII.estructuras.lista.Lista;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Usuario {
@@ -12,6 +13,7 @@ public class Usuario {
     private String nombre;
 
     @Transient // No se persistirá directamente con JPA
+    @JsonIgnore
     private Lista<Tarea> tareas;
 
     // Constructor que inicializa la lista
