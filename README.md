@@ -31,7 +31,15 @@ Aplicación Spring Boot para gestionar usuarios, tareas y registrar historial de
 
 ## 🗂️ Estructura del proyecto
 
-src/ └── main/ ├── java/ │ └── umg.programacionIII/ │ ├── model/ # Entidades: Usuario, Tarea, Historial │ ├── repository/ # Interfaces de acceso a datos │ └── service/ # Lógica de negocio └── resources/ └── application.properties # Configuración
+src/
+ └── main/
+     ├── java/
+     │   └── umg/programacionIII/
+     │       ├── model/         # Entidades: Usuario, Tarea, Historial
+     │       ├── repository/    # Interfaces de acceso a datos
+     │       └── service/       # Lógica de negocio
+     └── resources/
+         └── application.properties  # Configuración
 
 ## ⚙️ Requisitos previos
 
