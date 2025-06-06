@@ -1,17 +1,22 @@
 # 📦 Repo-DataBase
 
-Este repositorio contiene una aplicación desarrollada con **Spring Boot** que gestiona entidades como **usuarios**, **tareas** y **registros históricos**. Está orientada a servir como base para sistemas de seguimiento de actividades o tareas.
+Aplicación Spring Boot para gestionar usuarios, tareas y registrar historial de acciones. Implementa estructuras de datos personalizadas y ofrece funcionalidades CRUD completas.
 
 ## 🚀 Características
 
-- CRUD completo para las entidades:
-  - `Usuario`
-  - `Tarea`
-  - `Historial`
-- Uso de Spring Data JPA para persistencia en base de datos
-- Arquitectura MVC con separación por paquetes (`model`, `repository`, `service`)
-- Proyecto gestionado con Maven
-- API RESTful para acceder a las funcionalidades principales
+- **Gestión completa (CRUD) para:**
+  - Usuarios
+  - Tareas (incluyendo búsqueda por estado y eliminación por descripción)
+  - Historial de acciones
+
+- **Estructuras de datos personalizadas:**
+  - Implementa `Lista` y `Opcional` desde la dependencia Repo-Tools
+  - Uso de nodos y listas enlazadas para manejar colecciones
+
+- **Persistencia y arquitectura:**
+  - Uso de Spring Data JPA para acceso a datos
+  - Arquitectura en capas (model, repository, service)
+  - API RESTful
 
 ## 🛠️ Tecnologías utilizadas
 
@@ -19,25 +24,19 @@ Este repositorio contiene una aplicación desarrollada con **Spring Boot** que g
 - Spring Boot 3.4.5
 - Spring Web
 - Spring Data JPA
-- H2 o MySQL (configurable)
+- MySQL
+- RabbitMQ
+- Jakarta Validation API
 - Maven
 
 ## 🗂️ Estructura del proyecto
 
-```
-src/
- └── main/
-     ├── java/
-     │   └── umg.programacionIII/
-     │       ├── model/         # Clases de entidad: Usuario, Tarea, Historial
-     │       ├── repository/    # Interfaces de acceso a datos (JpaRepository)
-     │       └── service/       # Lógica de negocio
-     └── resources/
-         └── application.properties  # Configuración general
-```
+src/ └── main/ ├── java/ │ └── umg.programacionIII/ │ ├── model/ # Entidades: Usuario, Tarea, Historial │ ├── repository/ # Interfaces de acceso a datos │ └── service/ # Lógica de negocio └── resources/ └── application.properties # Configuración
 
 ## ⚙️ Requisitos previos
 
 - JDK 17 o superior
 - Maven 3.8+
-- (Opcional) Base de datos como MySQL, PostgreSQL o H2
+- MySQL
+- RabbitMQ (opcional según configuración)
+- Dependencia local: Repo-Tools (contiene estructuras de datos personalizadas)
